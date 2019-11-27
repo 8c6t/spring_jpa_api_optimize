@@ -92,4 +92,11 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery() {
+        String sql = "SELECT o FROM Order o" +
+                    " JOIN FETCH o.member m" +
+                    " JOIN FETCH o.delivery d";
+
+        return em.createQuery(sql, Order.class).getResultList();
+    }
 }
